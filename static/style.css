@@ -1,0 +1,14 @@
+.retro {
+	background: #a15089 url(https://image.lexica.art/full_jpg/228e1212-f78e-4229-bf85-91af41deb067);
+	background-size: 500% 500%;
+	background-position: bottom;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.tos p {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.tos h2 {
+	font-weight: bold;
+}

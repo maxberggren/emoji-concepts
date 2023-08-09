@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="forest">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEDM3EDJQY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JEDM3EDJQY');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Emoji concepts – Because why use words anymore at this point?">
+
+    <link href="{{ url_for('static', path='tailwind.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url_for('static', path='style.css') }}" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/29e3155ef6.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body hx-boost="true">
+  {% block content %}
+  {% endblock content %}
+
+  <script src="https://unpkg.com/htmx.org@1.1.0"></script>
+  {% block footer %}
+  {% include "footer.html" %}
+  {% endblock footer %}
+</body>
+</html>

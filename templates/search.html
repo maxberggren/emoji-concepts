@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% block title %}Emoji 😄 Concepts{% endblock %}
+{% block content %}
+
+<div class="">
+
+  {% block nav %}
+  {% include "nav.html" %}
+  {% endblock nav %}
+
+  <div class="hero min-h-2/4 pb-10">
+    <div class="hero-content flex-col">
+      <input 
+        type="text" 
+        name="search"
+        placeholder="Search" 
+        class="input w-full input-primary z-10" 
+        hx-get="/" 
+        hx-params="*"
+        hx-trigger="keyup changed delay:200ms, search" 
+        hx-target="#search"
+        hx-select="#search"
+        hx-swap="outerHTML"
+        hx-push-url="true"
+      />
+      <table class="table-xs table-zebra lg:table-lg" id="search">
+        <tbody>
+          {% for s in suggestions%}
+          <tr>
+            <th class="opacity-30">{{ loop.index }}</th>
+            <td>{{ s['concept'] | title }}</td>
+            <td><div class="tooltip tooltip-warning" data-tip="Click to copy">
+              <button 
+                onclick="navigator.clipboard.writeText('{{ s['emoji'] }}');" 
+                class="btn text-md md:text-2xl text-clip">{{ s['emoji'] }}
+              </button>
+            </div></td>
+            <td>{{ s['category'] }}</td>
+            <td>
+              <a href="/{{ s['concept'] | lower | replace(' ', '-') }}">
+                <i class="fa fa-link opacity-30"></i>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+      
+  </div>
+</div>
+
+{% endblock %}
