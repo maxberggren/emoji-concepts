@@ -30,11 +30,14 @@ async def route(request: Request, search: str = None):
         suggestions = [
             item
             for item in concepts
-            if any(search in str(value) for value in item.values())
+            if any(search.lower() in str(value.lower()) for value in item.values())
         ]
     else:
         suggestions = random.sample(concepts, 10)
-    return tr("search.html", {"request": request, "suggestions": suggestions})
+    return tr(
+        "search.html",
+        {"request": request, "suggestions": suggestions, "n_concepts": len(concepts)},
+    )
 
 
 @app.get("/{search}/")
@@ -43,4 +46,7 @@ async def route(request: Request, search: str):
     suggestions = [
         item for item in concepts if search.lower() in item["concept"].lower()
     ]
-    return tr("search.html", {"request": request, "suggestions": suggestions})
+    return tr(
+        "search.html",
+        {"request": request, "suggestions": suggestions, "n_concepts": len(concepts)},
+    )
